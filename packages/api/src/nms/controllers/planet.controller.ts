@@ -4,7 +4,7 @@ import { CreatePlanetDto, UpdatePlanetDto } from '../dtos/planet';
 import { PlanetService } from '../services/planet.service';
 
 @UseGuards(JwtAuthGuard)
-@Controller('planet')
+@Controller('nms/planets')
 export class PlanetController {
   constructor(private planetService: PlanetService) {}
 

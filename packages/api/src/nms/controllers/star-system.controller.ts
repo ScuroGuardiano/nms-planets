@@ -4,7 +4,7 @@ import { CreateStarSystemDto, UpdateStarSystemDto } from '../dtos/star-system';
 import { StarSystemService } from '../services/star-system.service';
 
 @UseGuards(JwtAuthGuard)
-@Controller('star-system')
+@Controller('nms/star-systems')
 export class StarSystemController {
   constructor(private starSystemService: StarSystemService) {}
 

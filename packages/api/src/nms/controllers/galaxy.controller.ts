@@ -4,7 +4,7 @@ import { CreateGalaxyDto, UpdateGalaxyDto } from '../dtos/galaxy';
 import { GalaxyService } from '../services/galaxy.service';
 
 @UseGuards(JwtAuthGuard)
-@Controller('galaxy')
+@Controller('nms/galaxies')
 export class GalaxyController {
   constructor(private galaxyService: GalaxyService) {}
 

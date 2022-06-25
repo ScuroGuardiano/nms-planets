@@ -4,7 +4,7 @@ import { CreateResourceDto, UpdateResourceDto } from '../dtos/resource';
 import { ResourceService } from '../services/resource.service';
 
 @UseGuards(JwtAuthGuard)
-@Controller('resource')
+@Controller('nms/resources')
 export class ResourceController {
   constructor(private resourceService: ResourceService) {}
 

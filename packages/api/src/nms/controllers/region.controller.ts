@@ -4,7 +4,7 @@ import { CreateGalaxyRegionDto, UpdateGalaxyRegionDto } from '../dtos/region';
 import { RegionService } from '../services/region.service';
 
 @UseGuards(JwtAuthGuard)
-@Controller('region')
+@Controller('nms/regions')
 export class RegionController {
   constructor(private regionService: RegionService) {}
 
