@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'nms-planets'`, () => {
+  it(`should have as title 'nms-front'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('nms-planets');
+    expect(app.title).toEqual('nms-front');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('nms-planets app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('nms-front app is running!');
   });
 });
