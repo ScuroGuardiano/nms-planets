@@ -6,10 +6,10 @@ export default class Resource {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   symbol: string;
 
   @Column({ nullable: true })
@@ -19,7 +19,7 @@ export default class Resource {
   rarity?: string;
 
   @Column({ nullable: true, type: "decimal" })
-  baseValue: number;
+  baseValue?: number;
 
   @ManyToMany(() => Planet)
   planets: Planet[];

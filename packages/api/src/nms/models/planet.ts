@@ -56,4 +56,7 @@ export default class Planet {
 
   @Column({ nullable: true })
   claimedBy: string;
+
+  @Column({ nullable: true })
+  discoveredBy: string;
 }

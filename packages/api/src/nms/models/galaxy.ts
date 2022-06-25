@@ -10,7 +10,7 @@ export default class Galaxy {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column()
   order: number;
 
   @Column({ nullable: true })

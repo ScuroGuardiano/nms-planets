@@ -8,6 +8,9 @@ export default class StarSystem {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
+  @Column({ unique: true })
+  name: string;
+  
   @ManyToOne(() => Galaxy, galaxy => galaxy.systems)
   @JoinColumn()
   galaxy?: Galaxy;
@@ -31,7 +34,7 @@ export default class StarSystem {
   @Column({ nullable: true })
   distanceToCentre?: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   galacticCoords?: string;
 
   @Column({ nullable: true })
