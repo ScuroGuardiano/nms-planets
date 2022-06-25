@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateStarSystemDto, UpdateStarSystemDto } from '../dtos/star-system';
-import StarSystem from '../models/star-system';
+import StarSystem from '../models/star-system.entity';
 import BaseCrudService from './base-crud-service';
 
 @Injectable()

@@ -24,7 +24,11 @@ export class AuthenticationService {
 
   public async verifyUser(username: string, password: string) {
     const user = await this.usersRepository.findOne({ where: { username } });
-    if (user && await this.verifyPassword(password, user.password)) {
+    if (!user) {
+      return null;
+    }
+
+    if (await this.verifyPassword(password, user.password)) {
       const { password, ...result } = user;
       return result;
     }

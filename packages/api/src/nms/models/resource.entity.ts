@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Planet from "./planet";
+import Planet from "./planet.entity";
 
 @Entity()
 export default class Resource {
@@ -21,7 +21,7 @@ export default class Resource {
   @Column({ nullable: true, type: "decimal" })
   baseValue?: number;
 
-  @ManyToMany(() => Planet)
+  @ManyToMany(() => Planet, planet => planet.resources)
   planets: Planet[];
 
 }

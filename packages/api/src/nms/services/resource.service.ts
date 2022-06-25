@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsOrder, FindOptionsWhere, Repository } from 'typeorm';
 import { CreateResourceDto, UpdateResourceDto } from '../dtos/resource';
-import Resource from '../models/resource';
+import Resource from '../models/resource.entity';
 import BaseCrudService from './base-crud-service';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateGalaxyRegionDto, UpdateGalaxyRegionDto } from '../dtos/region';
-import GalaxyRegion from '../models/region';
+import GalaxyRegion from '../models/region.entity';
 import BaseCrudService from './base-crud-service';
 
 @Injectable()

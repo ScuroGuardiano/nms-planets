@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Galaxy from "./galaxy";
-import StarSystem from "./star-system";
+import Galaxy from "./galaxy.entity";
+import StarSystem from "./star-system.entity";
 
 @Entity()
 export default class GalaxyRegion {

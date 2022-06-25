@@ -1,9 +1,10 @@
-import { Column, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import Galaxy from "./galaxy";
-import GalaxyRegion from "./region";
-import Resource from "./resource";
-import StarSystem from "./star-system";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import Galaxy from "./galaxy.entity";
+import GalaxyRegion from "./region.entity";
+import Resource from "./resource.entity";
+import StarSystem from "./star-system.entity";
 
+@Entity()
 export default class Planet {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -41,7 +42,7 @@ export default class Planet {
   @Column({ nullable: true })
   weather?: string;
 
-  @ManyToMany(() => Resource)
+  @ManyToMany(() => Resource, resource => resource.planets)
   @JoinColumn()
   resources: Resource[];
 
