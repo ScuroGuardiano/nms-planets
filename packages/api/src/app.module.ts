@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { NmsModule } from './nms/nms.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    AuthenticationModule
+    AuthenticationModule,
+    NmsModule
   ],
   controllers: [AppController],
   providers: [AppService],
