@@ -1,13 +1,41 @@
-import { Controller, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/authentication/jwt.guard';
 import { CreateGalaxyRegionDto, UpdateGalaxyRegionDto } from '../dtos/region';
 import { RegionService } from '../services/region.service';
-import { BaseCrudController } from './base-crud-controller';
 
 @UseGuards(JwtAuthGuard)
 @Controller('region')
-export class RegionController extends BaseCrudController<CreateGalaxyRegionDto, UpdateGalaxyRegionDto, RegionService> {
-  constructor(regionService: RegionService) {
-    super(regionService);
+export class RegionController {
+  constructor(private regionService: RegionService) {}
+
+  @Get('/')
+  async list() {
+    const entities = await this.regionService.list();
+    return entities;
+  }
+
+  @Get("/:id")
+  async getById(@Param("id") id: number) {
+    const entity = await this.regionService.getById(id);
+    return entity;
+  }
+
+  @Post('/')
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createDto: CreateGalaxyRegionDto) {
+    const entity = await this.regionService.add(createDto);
+    return entity;
+  }
+
+  @Put('/:id')
+  async update(@Param() id: number, @Body() updateDto: UpdateGalaxyRegionDto) {
+    const entity = await this.regionService.update(id, updateDto);
+    return entity;
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param() id: number) {
+    await this.regionService.delete(id);
   }
 }
