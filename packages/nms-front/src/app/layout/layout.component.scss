@@ -1,0 +1,44 @@
+.site-title {
+  margin: 0;
+}
+
+.logged-in-user {
+  margin-right: .5rem;
+  font-size: 1.2rem;
+}
+
+.ngx-icon {
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
+main {
+  padding: 1rem;
+  overflow: auto;
+  flex: 1;
+}
+
+@import '@swimlane/ngx-ui/lib/styles/colors/variables';
+
+/**
+ * Theme Styles
+ */
+.style-guide {
+  transition: background 500ms, background-image 500ms, color 500ms;
+}
+
+.app {
+  display: flex;
+  flex-flow: row nowrap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
