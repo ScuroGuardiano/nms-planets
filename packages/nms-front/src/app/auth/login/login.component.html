@@ -1,0 +1,38 @@
+<ngx-section
+  sectionTitle="Login"
+  [sectionCollapsible]="false"
+>
+  <form #loginForm (submit)="login($event)">
+    <p class="error" *ngIf="error">
+      {{ error }}
+    </p>
+
+    <ngx-input
+      [type]='$any("text")'
+      name="login"
+      label="Login"
+      placeholder="Login"
+      [autofocus]="true"
+      [(ngModel)]="username"
+      [required]="true"
+    ></ngx-input>
+
+    <ngx-input
+      [type]='$any("password")'
+      name="password"
+      label="Password"
+      placeholder="Password"
+      [(ngModel)]="password"
+      [required]="true"
+    ></ngx-input>
+
+    <ngx-button
+      [type]="'submit'"
+      [promise]="loginPromise"
+      class="btn btn-primary"
+      [disabled]="loginDisabled"
+    >Submit</ngx-button>
+
+    <!-- <input type="submit" value="Submit" class="btn btn-primary"> -->
+  </form>
+</ngx-section>

@@ -10,12 +10,12 @@
       <!-- <span class="logged-in-user" *ngIf="user"> -->
       <span class="logged-in-user">
         <i class="ngx-icon ngx-user"></i>
-        <!-- {{ user?.username }} -->
+        {{ user?.username }}
       </span>
       <!-- <button (click)="logout()" class="btn btn-primary large"> -->
-      <button class="btn btn-primary large">
+      <a class="btn btn-primary large" [routerLink]="'/logout'" style="color: #fff">
         Logout
-      </button>
+      </a>
       </ngx-toolbar-content>
     </ngx-toolbar>
 
