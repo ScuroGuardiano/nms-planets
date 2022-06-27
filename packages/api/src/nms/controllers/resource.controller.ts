@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/authentication/jwt.guard';
+import { ListQueryDto } from '../dtos/list-query';
 import { CreateResourceDto, UpdateResourceDto } from '../dtos/resource';
 import { ResourceService } from '../services/resource.service';
 
@@ -9,8 +10,11 @@ export class ResourceController {
   constructor(private resourceService: ResourceService) {}
 
   @Get('/')
-  async list() {
-    const entities = await this.resourceService.list();
+  async list(@Query() query: ListQueryDto) {
+    const entities = await this.resourceService.list(
+      query.limit ?? 20,
+      query.offset ?? 0
+    );
     return entities;
   }
 

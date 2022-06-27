@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { API } from '../api';
+import { AuthModule } from './auth.module';
 import { ILoginResponse, IUser } from './interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: AuthModule
 })
 export class AuthService {
 
@@ -26,11 +28,6 @@ export class AuthService {
     return this._user$;
   }
 
-  readonly resources = {
-    login: `${environment.baseApiUrl}/auth/login`,
-    me: `${environment.baseApiUrl}/auth/me`
-  }
-
   getAccessToken() {
     return this.accessToken;
   }
@@ -41,7 +38,7 @@ export class AuthService {
 
   async login(username: string, password: string) {
     const res = await this.http.post<ILoginResponse>(
-      this.resources.login,
+      API.auth.login,
       { username, password }
     ).toPromise();
 
@@ -92,7 +89,7 @@ export class AuthService {
     }
 
     // Interceptor handles auth here
-    const user = await this.http.get<IUser>(this.resources.me).toPromise();
+    const user = await this.http.get<IUser>(API.auth.me).toPromise();
 
     this.user = user;
   }
