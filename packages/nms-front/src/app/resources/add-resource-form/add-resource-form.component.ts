@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
 import { IResource } from 'src/app/api-interfaces';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ResourcesService } from 'src/app/services/resources.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class AddResourceFormComponent implements OnInit {
 
   constructor(
     private resourcesService: ResourcesService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,8 @@ export class AddResourceFormComponent implements OnInit {
   group?: string;
   rarity?: string;
   baseValue?: number;
+
+  @Output() added = new EventEmitter<IResource>();
 
   onInput(form: HTMLFormElement) {
     console.log("AddResourceFormComponent::onInput");
@@ -44,6 +48,7 @@ export class AddResourceFormComponent implements OnInit {
 
     try {
       const result = await this.addingPromise;
+      this.added.emit(result);
       this.notificationService.create({
         title: "Added resource!",
         body: `Resource ${result.name} (${result.symbol}) has been added.`,
@@ -58,19 +63,6 @@ export class AddResourceFormComponent implements OnInit {
   }
 
   handleError(err: any) {
-    let message = `Error: ${err?.message}. Check console for more details.`;
-
-    if (err instanceof HttpErrorResponse) {
-      const errorDetails = JSON.stringify(err.error, null, 2);
-      message = `HTTP Error [${err.status} ${err.statusText}]: ${errorDetails}`;
-    }
-
-    this.notificationService.create({
-      title: "Error!",
-      body: message,
-      styleType: NotificationStyleType.error,
-      timeout: 8000
-    });
-    console.error(err);
+    this.errorHandler.handleError(err);
   }
 }

@@ -1,0 +1,26 @@
+.table {
+  margin-bottom: 0;
+}
+.row-actions {
+  width: 100px;
+  .row-actions-wrapper {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+  }
+}
+.row-actions-header {
+  width: 100px;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.select-row-header, .select-row {
+  width: 28px;
+}
+
+::ng-deep .ngx-checkbox--box {
+  margin: 0 !important;
+}

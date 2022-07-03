@@ -1,0 +1,37 @@
+<app-loading-overlay-wrapper [promise]="loadingPromise">
+  <ngx-section sectionTitle="Resources">
+    <table *ngIf="resources" class="table">
+      <thead>
+        <tr>
+          <th class="select-row-header">
+            <ngx-checkbox [ngModel]="allSelected" (change)="onSelectAll($event)"></ngx-checkbox>
+          </th>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Group</th>
+          <th>Rarity</th>
+          <th>Base value</th>
+          <th class="row-actions-header">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of resources">
+          <td class="select-row">
+            <ngx-checkbox [ngModel]="isSelected(resource.id)" (change)="onSelect(resource.id, $event)"></ngx-checkbox>
+          </td>
+          <td>{{ resource.name }}</td>
+          <td>{{ resource.symbol }}</td>
+          <td>{{ resource.group }}</td>
+          <td>{{ resource.rarity }}</td>
+          <td>{{ resource.baseValue }}</td>
+          <td class="row-actions">
+            <div class="row-actions-wrapper">
+              <button class="btn btn-warning"><i class="ngx-icon ngx-edit-outline"></i></button>
+              <button class="btn btn-danger"><i class="ngx-icon ngx-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-section>
+</app-loading-overlay-wrapper>

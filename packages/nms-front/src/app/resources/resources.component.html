@@ -1,1 +1,2 @@
-<app-add-resource-form></app-add-resource-form>
+<app-add-resource-form (added)="list.loadData()"></app-add-resource-form>
+<app-resource-list #list></app-resource-list>
