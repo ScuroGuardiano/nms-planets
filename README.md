@@ -11,7 +11,7 @@
 ## Creating user
 ```sh
 curl --request POST \
-  --url http://codeserver:1337/auth/register \
+  --url http://localhost:1337/auth/register \
   --header 'Content-Type: application/json' \
   --data '{
 	"username": "<username>",
