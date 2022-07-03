@@ -28,14 +28,14 @@ export class RegionController {
   }
 
   @Put('/:id')
-  async update(@Param() id: number, @Body() updateDto: UpdateGalaxyRegionDto) {
+  async update(@Param("id") id: number, @Body() updateDto: UpdateGalaxyRegionDto) {
     const entity = await this.regionService.update(id, updateDto);
     return entity;
   }
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async delete(@Param() id: number) {
+  async delete(@Param("id") id: number) {
     await this.regionService.delete(id);
   }
 }

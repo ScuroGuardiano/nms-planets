@@ -28,14 +28,14 @@ export class GalaxyController {
   }
 
   @Put('/:id')
-  async update(@Param() id: number, @Body() updateDto: UpdateGalaxyDto) {
+  async update(@Param("id") id: number, @Body() updateDto: UpdateGalaxyDto) {
     const entity = await this.galaxyService.update(id, updateDto);
     return entity;
   }
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async delete(@Param() id: number) {
+  async delete(@Param("id") id: number) {
     await this.galaxyService.delete(id);
   }
 }

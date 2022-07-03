@@ -28,14 +28,14 @@ export class StarSystemController {
   }
 
   @Put('/:id')
-  async update(@Param() id: number, @Body() updateDto: UpdateStarSystemDto) {
+  async update(@Param("id") id: number, @Body() updateDto: UpdateStarSystemDto) {
     const entity = await this.starSystemService.update(id, updateDto);
     return entity;
   }
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async delete(@Param() id: number) {
+  async delete(@Param("id") id: number) {
     await this.starSystemService.delete(id);
   }
 }

@@ -28,14 +28,14 @@ export class PlanetController {
   }
 
   @Put('/:id')
-  async update(@Param() id: number, @Body() updateDto: UpdatePlanetDto) {
+  async update(@Param("id") id: number, @Body() updateDto: UpdatePlanetDto) {
     const entity = await this.planetService.update(id, updateDto);
     return entity;
   }
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async delete(@Param() id: number) {
+  async delete(@Param("id") id: number) {
     await this.planetService.delete(id);
   }
 }
