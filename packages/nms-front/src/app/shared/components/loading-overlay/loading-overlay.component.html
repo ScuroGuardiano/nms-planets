@@ -1,0 +1,12 @@
+<ngx-progress-spinner
+  [mode]="mode"
+  [color]="color"
+  [diameter]="diameter"
+  [strokeWidth]="strokeWidth"
+  [appearance]="$any('icon')"
+  [inProgressIcon]="inprogressIcon"
+></ngx-progress-spinner>
+
+<ng-template #inprogressIcon>
+  <i class="ngx-icon ngx-widget" [style.color]="color" [style.font-size]="'50px'"></i>
+</ng-template>

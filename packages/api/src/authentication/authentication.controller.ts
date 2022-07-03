@@ -15,7 +15,6 @@ export class AuthenticationController {
 
   @Post('register')
   async register(@Request() req) {
-    console.log("Got requte0");
     const username = req.body.username;
     const password = req.body.password;
     if (username && password) {

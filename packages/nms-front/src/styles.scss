@@ -23,3 +23,7 @@ html, body {
 a:hover {
   text-decoration: underline;
 }
+
+.ngx-notification-body {
+  white-space: pre-wrap;
+}

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ResourcesComponent } from './resources.component';
+import { AddResourceFormComponent } from './add-resource-form/add-resource-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    ResourcesComponent
+    ResourcesComponent,
+    AddResourceFormComponent
   ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 export class ResourcesModule { }

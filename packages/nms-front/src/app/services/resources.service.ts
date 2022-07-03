@@ -15,7 +15,7 @@ export class ResourcesService {
 
     return this.http.get<IResource[]>(API.resources.list, {
       params: { limit }
-    });
+    }).toPromise();
   }
 
   find() {
@@ -24,18 +24,18 @@ export class ResourcesService {
   }
 
   getById(id: number) {
-    return this.http.get<IResource>(API.resources.get(id));
+    return this.http.get<IResource>(API.resources.get(id)).toPromise();
   }
 
   create(resourceDto: CreateResourceDto) {
-    return this.http.post<IResource>(API.resources.create, { ...resourceDto });
+    return this.http.post<IResource>(API.resources.create, { ...resourceDto }).toPromise();
   }
 
   update(id: number, resourceDto: UpdateResourceDto) {
-    return this.http.put<IResource>(API.resources.update(id), { ...resourceDto });
+    return this.http.put<IResource>(API.resources.update(id), { ...resourceDto }).toPromise();
   }
 
   delete(id: number) {
-    return this.http.delete<void>(API.resources.delete(id));
+    return this.http.delete<void>(API.resources.delete(id)).toPromise();
   }
 }

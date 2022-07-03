@@ -1,4 +1,4 @@
-import { IsBoolean, IsDecimal, IsInt, IsOptional, IsString, Min } from "class-validator";
+import { IsBoolean, IsInt, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 export class CreateStarSystemDto {
   @IsString()
@@ -40,11 +40,11 @@ export class CreateStarSystemDto {
   @IsOptional()
   economy?: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsOptional()
   esell?: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsOptional()
   ebuy?: number;
 
@@ -100,11 +100,11 @@ export class UpdateStarSystemDto {
   @IsOptional()
   economy?: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsOptional()
   esell?: number;
 
-  @IsDecimal()
+  @IsNumber()
   @IsOptional()
   ebuy?: number;
 

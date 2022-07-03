@@ -1,7 +1,10 @@
 <div class="navigation">
   <ngx-nav-menu [expanded]="navExpanded" class="navigation">
     <div class="nav-logo">
-      <h2 class="logo-image">{{logo}}</h2>
+      <!-- Na ekranie dotykowym nie pojawia się po najechaniu slide so..
+           To jest poprawka pod to. Logo też jest clickable na zwiniętym -->
+      <h2 *ngIf="navExpanded" class="logo-image">{{logo}}</h2>
+      <h2 *ngIf="!navExpanded" class="logo-image" (click)="navExpanded = true">{{logo}}</h2>
       <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
       <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
     </div>

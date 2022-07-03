@@ -1,4 +1,4 @@
-import { IsDecimal, IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateResourceDto {
   @IsString()
@@ -15,8 +15,7 @@ export class CreateResourceDto {
   @IsOptional()
   rarity?: string;
 
-  @IsDecimal()
-  @IsOptional()
+  @IsNumber()
   baseValue?: number;
 }
 
@@ -37,7 +36,7 @@ export class UpdateResourceDto {
   @IsOptional()
   rarity?: string;
 
-  @IsDecimal()
+  @IsNumber()
   @IsOptional()
   baseValue?: number;
 }
