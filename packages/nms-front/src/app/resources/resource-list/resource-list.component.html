@@ -27,11 +27,18 @@
           <td class="row-actions">
             <div class="row-actions-wrapper">
               <button class="btn btn-warning"><i class="ngx-icon ngx-edit-outline"></i></button>
-              <button class="btn btn-danger"><i class="ngx-icon ngx-trash"></i></button>
+              <button class="btn btn-danger" (click)="onDelete(resource)"><i class="ngx-icon ngx-trash"></i></button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class="delete-all-wrapper">
+      <button
+        [disabled]="selected.size === 0"
+        class="btn btn-danger large delete-all"
+        (click)="onDeleteSelected()"
+      ><i class="ngx-icon ngx-trash"></i>Delete sected</button>
+    </div>
   </ngx-section>
 </app-loading-overlay-wrapper>
