@@ -2,6 +2,9 @@
   "name": "nms-planets",
   "packageManager": "yarn@3.2.1",
   "private": true,
+  "scripts": {
+    "start": "yarn backend:start & yarn frontend:start &"
+  },
   "workspaces": [
     "packages/*"
   ]

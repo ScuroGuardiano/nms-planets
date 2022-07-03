@@ -2,6 +2,7 @@
   "name": "nms-front",
   "version": "0.0.0",
   "scripts": {
+    "frontend:start": "yarn start",
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
