@@ -11,6 +11,18 @@ form {
     grid-row: 2;
     margin-bottom: 0;
   }
+
+  input[required] + label {
+    &::after {
+      font-weight: 900;
+      content: ' *';
+      color: yellow;
+    }
+  }
+
+  input:invalid {
+    border-color: red;
+  }
 }
 
 @media (max-width: 900px) {

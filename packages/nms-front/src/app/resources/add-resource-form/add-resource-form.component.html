@@ -1,60 +1,60 @@
 <app-loading-overlay-wrapper [promise]="addingPromise">
   <ngx-section class="shadow" sectionTitle="Add resource">
     <form #form (input)="onInput(form)" (submit)="submit(form)">
+      <input
+      type="text"
+      placeholder="name"
+      name="name"
+      id="name"
+      class="form-input input"
+      [(ngModel)]="name"
+      required
+      />
       <label for="name">Name:</label>
-      <input
-        type="text"
-        placeholder="name"
-        name="name"
-        id="name"
-        class="form-input input"
-        [(ngModel)]="name"
-        required
-      />
 
+      <input
+      type="text"
+      placeholder="symbol"
+      name="symbol"
+      id="symbol"
+      class="form-input input"
+      [(ngModel)]="symbol"
+      required
+      />
       <label for="symbol">Symbol:</label>
-      <input
-        type="text"
-        placeholder="symbol"
-        name="symbol"
-        id="symbol"
-        class="form-input input"
-        [(ngModel)]="symbol"
-        required
-      />
 
+      <input
+      type="text"
+      placeholder="group"
+      name="group"
+      id="group"
+      class="form-input input"
+      [(ngModel)]="group"
+      />
       <label for="group">Group:</label>
-      <input
-        type="text"
-        placeholder="group"
-        name="group"
-        id="group"
-        class="form-input input"
-        [(ngModel)]="group"
-      />
 
+      <input
+      type="text"
+      placeholder="rarity"
+      name="rarity"
+      id="rarity"
+      class="form-input input"
+      [(ngModel)]="rarity"
+      />
       <label for="rarity">Rarity:</label>
-      <input
-        type="text"
-        placeholder="rarity"
-        name="rarity"
-        id="rarity"
-        class="form-input input"
-        [(ngModel)]="rarity"
-      />
 
-      <label for="baseValue">Base value:</label>
       <input
-        type="number"
-        placeholder="baseValue"
-        name="baseValue"
-        id="baseValue"
-        class="form-input input"
-        [(ngModel)]="baseValue"
-        step="0.01"
-        min="0"
-        required
+      type="number"
+      placeholder="baseValue"
+      name="baseValue"
+      id="baseValue"
+      class="form-input input"
+      [(ngModel)]="baseValue"
+      step="0.01"
+      min="0"
+      required
       />
+      <label for="baseValue">Base value:</label>
 
       <input
         type="submit"
