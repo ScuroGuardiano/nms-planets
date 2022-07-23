@@ -11,6 +11,7 @@ import { httpInterceptorProviders } from './interceptors';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ResourcesModule } from './resources/resources.module';
+import { GalaxiesModule } from './galaxies/galaxies.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ResourcesModule } from './resources/resources.module';
     LayoutModule,
     AuthModule,
     DashboardModule,
-    ResourcesModule
+    ResourcesModule,
+    GalaxiesModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -5,8 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ResourceListComponent } from './resource-list/resource-list.component';
 import { ResourceRowComponent } from './resource-list/resource-row/resource-row.component';
 
-
-
 @NgModule({
   declarations: [
     ResourcesComponent,

@@ -13,3 +13,13 @@ export interface IResource {
   baseValue?: number;
   // planets: IPlanet[]; Lejta!
 }
+
+export interface IGalaxy {
+  id: number;
+  name: string;
+  order: number;
+  type?: string;
+  color?: string;
+  // regions: GalaxyRegion[];
+  // systems: GalaxySystem[];
+}

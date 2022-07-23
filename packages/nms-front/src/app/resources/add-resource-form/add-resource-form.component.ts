@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
 import { IResource } from 'src/app/api-interfaces';
