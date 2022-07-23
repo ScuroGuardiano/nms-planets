@@ -1,0 +1,14 @@
+:host {
+  display: contents;
+}
+.row-actions {
+  width: 100px;
+  .row-actions-wrapper {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+  }
+}
+form {
+  display: contents;
+}

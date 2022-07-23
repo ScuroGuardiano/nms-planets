@@ -19,17 +19,7 @@
           <td class="select-row">
             <ngx-checkbox [ngModel]="isSelected(resource.id)" (change)="onSelect(resource.id, $event)"></ngx-checkbox>
           </td>
-          <td>{{ resource.name }}</td>
-          <td>{{ resource.symbol }}</td>
-          <td>{{ resource.group }}</td>
-          <td>{{ resource.rarity }}</td>
-          <td>{{ resource.baseValue }}</td>
-          <td class="row-actions">
-            <div class="row-actions-wrapper">
-              <button class="btn btn-warning"><i class="ngx-icon ngx-edit-outline"></i></button>
-              <button class="btn btn-danger" (click)="onDelete(resource)"><i class="ngx-icon ngx-trash"></i></button>
-            </div>
-          </td>
+          <app-resource-row [resource]="resource" (delete)="onDelete($event)" (update)="update($event)"></app-resource-row>
         </tr>
       </tbody>
     </table>
@@ -38,7 +28,7 @@
         [disabled]="selected.size === 0"
         class="btn btn-danger large delete-all"
         (click)="onDeleteSelected()"
-      ><i class="ngx-icon ngx-trash"></i>Delete sected</button>
+      ><i class="ngx-icon ngx-trash"></i>Delete selected</button>
     </div>
   </ngx-section>
 </app-loading-overlay-wrapper>

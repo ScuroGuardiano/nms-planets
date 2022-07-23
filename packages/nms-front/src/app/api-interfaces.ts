@@ -10,6 +10,6 @@ export interface IResource {
   symbol: string;
   group?: string;
   rarity?: string;
-  baseValue?: string;
+  baseValue?: number;
   // planets: IPlanet[]; Lejta!
 }

@@ -1,14 +1,6 @@
 .table {
   margin-bottom: 0;
 }
-.row-actions {
-  width: 100px;
-  .row-actions-wrapper {
-    display: flex;
-    gap: .5rem;
-    justify-content: center;
-  }
-}
 .row-actions-header {
   width: 100px;
 }
@@ -28,6 +20,9 @@ td {
 .delete-all {
   margin-top: 1rem;
   margin-right: 1rem;
+  .ngx-icon {
+    margin-top: -6px;
+  }
 }
 
 .delete-all-wrapper {

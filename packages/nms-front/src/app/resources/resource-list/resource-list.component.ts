@@ -4,6 +4,10 @@ import { IResource } from 'src/app/api-interfaces';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ResourcesService } from 'src/app/services/resources.service';
 
+interface IResourceExtended extends IResource {
+  isEdited?: boolean
+}
+
 @Component({
   selector: 'app-resource-list',
   templateUrl: './resource-list.component.html',
@@ -19,20 +23,16 @@ export class ResourceListComponent implements OnInit {
   ) { }
 
   loadingPromise?: Promise<any>;
-  resources?: IResource[];
+  resources?: IResourceExtended[];
   selected: Set<number> = new Set();
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log("ResourceListComponent::ngOnChanges");
-  }
-
+  // #region read
   async loadData() {
     this.loadingPromise = this.resourcesService.list();
-
     try {
       this.resources = await this.loadingPromise;
     }
@@ -40,44 +40,22 @@ export class ResourceListComponent implements OnInit {
       this.handleError(err);
     }
   }
+  // #endregion
 
-  private handleError(err: any) {
-    this.errorHandler.handleError(err);
+  // #region update
+  async update(resource: IResource) {
+    try {
+      this.loadingPromise = this.resourcesService.update(resource.id, resource);
+      const updated = await this.loadingPromise;
+      this.resources = this.resources?.map(r => r.id === updated.id ? updated : r);
+    }
+    catch(err) {
+      this.handleError(err);
+    }
   }
+  // #endregion
 
-  onSelect(id: number, event: Event) {
-    const val = (event.target as HTMLInputElement).checked;
-    val ? this.select(id) : this.unselect(id);
-  }
-
-  select(id: number) {
-    this.selected.add(id);
-  }
-
-  unselect(id: number) {
-    this.selected.delete(id);
-  }
-
-  isSelected(id: number) {
-    return this.selected.has(id);
-  }
-
-  onSelectAll(event: Event) {
-    const val = (event.target as HTMLInputElement).checked;
-    val ? this.selectAll() : this.unselectAll();
-  }
-
-  selectAll() {
-    this.selected = new Set(this.resources!.map(resource => resource.id));
-  }
-  unselectAll() {
-    this.selected.clear();
-  }
-
-  get allSelected() {
-    return this.selected.size == this.resources!.length;
-  }
-
+  // #region delete
   async onDelete(resource: IResource) {
     const confirmation = await this.alertService.confirm({
       title: `Deleting resource ${resource.name}`,
@@ -131,4 +109,46 @@ export class ResourceListComponent implements OnInit {
       this.handleError(err);
     }
   }
+  // #endregion
+
+  // #region select
+  onSelect(id: number, event: Event) {
+    const val = (event.target as HTMLInputElement).checked;
+    val ? this.select(id) : this.unselect(id);
+  }
+
+  select(id: number) {
+    this.selected.add(id);
+  }
+
+  unselect(id: number) {
+    this.selected.delete(id);
+  }
+
+  isSelected(id: number) {
+    return this.selected.has(id);
+  }
+
+  onSelectAll(event: Event) {
+    const val = (event.target as HTMLInputElement).checked;
+    val ? this.selectAll() : this.unselectAll();
+  }
+
+  selectAll() {
+    this.selected = new Set(this.resources!.map(resource => resource.id));
+  }
+  unselectAll() {
+    this.selected.clear();
+  }
+
+  get allSelected() {
+    return this.selected.size == this.resources!.length;
+  }
+  // #endregion
+
+  // #region helpers
+  private handleError(err: any) {
+    this.errorHandler.handleError(err);
+  }
+  // #endregion
 }

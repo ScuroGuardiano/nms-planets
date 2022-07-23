@@ -1,0 +1,79 @@
+<ng-container *ngIf="!editing; else editTpl">
+  <td>{{ resource.name }}</td>
+  <td>{{ resource.symbol }}</td>
+  <td>{{ resource.group }}</td>
+  <td>{{ resource.rarity }}</td>
+  <td>{{ resource.baseValue }}</td>
+  <td class="row-actions">
+    <div class="row-actions-wrapper">
+      <button class="btn btn-warning" (click)="edit()"><i class="ngx-icon ngx-edit-outline"></i></button>
+      <button class="btn btn-danger" (click)="onDelete()"><i class="ngx-icon ngx-trash"></i></button>
+    </div>
+  </td>
+</ng-container>
+
+<ng-template #editTpl>
+  <form #form (input)="onInput(form)" (submit)="onSubmit()">
+  <td>
+    <input
+      type="text"
+      placeholder="name"
+      name="name"
+      id="name"
+      class="inline-edit form-input"
+      [(ngModel)]="edited.name"
+      required
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="symbol"
+      name="symbol"
+      id="symbol"
+      class="form-input input"
+      [(ngModel)]="edited.symbol"
+      required
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="group"
+      name="group"
+      id="group"
+      class="form-input input"
+      [(ngModel)]="edited.group"
+    />
+  </td>
+  <td>
+    <input
+      type="text"
+      placeholder="rarity"
+      name="rarity"
+      id="rarity"
+      class="form-input input"
+      [(ngModel)]="edited.rarity"
+    />
+  </td>
+  <td>
+    <input
+      type="number"
+      placeholder="baseValue"
+      name="baseValue"
+      id="baseValue"
+      class="form-input input"
+      [(ngModel)]="edited.baseValue"
+      step="0.01"
+      min="0"
+      required
+    />
+  </td>
+  <td class="row-actions">
+    <div class="row-actions-wrapper">
+      <button type="submit" class="btn btn-warning" [disabled]="!valid"><i class="ngx-icon ngx-check"></i></button>
+      <button class="btn btn-danger" (click)="onDiscard()"><i class="ngx-icon ngx-x-small"></i></button>
+    </div>
+  </td>
+  </form>
+</ng-template>
