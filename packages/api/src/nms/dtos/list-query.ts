@@ -6,11 +6,11 @@ export class ListQueryDto {
   @IsInt()
   @Min(0)
   @IsOptional()
-  offset?: number;
+  offset?: number = 0;
 
   @Transform(({ value }) => Number.parseInt(value))
   @IsInt()
   @Min(0)
   @IsOptional()
-  limit?: number;
+  limit?: number = 20;
 }

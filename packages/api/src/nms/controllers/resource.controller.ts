@@ -11,10 +11,7 @@ export class ResourceController {
 
   @Get('/')
   async list(@Query() query: ListQueryDto) {
-    const entities = await this.resourceService.list(
-      query.limit ?? 20,
-      query.offset ?? 0
-    );
+    const entities = await this.resourceService.list(query.limit, query.offset);
     return entities;
   }
 

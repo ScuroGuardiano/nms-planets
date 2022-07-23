@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/authentication/jwt.guard';
 import { CreateGalaxyDto, UpdateGalaxyDto } from '../dtos/galaxy';
+import { ListQueryDto } from '../dtos/list-query';
 import { GalaxyService } from '../services/galaxy.service';
 
 @UseGuards(JwtAuthGuard)
@@ -9,8 +10,8 @@ export class GalaxyController {
   constructor(private galaxyService: GalaxyService) {}
 
   @Get('/')
-  async list() {
-    const entities = await this.galaxyService.list();
+  async list(@Query() query: ListQueryDto) {
+    const entities = await this.galaxyService.list(query.limit, query.offset);
     return entities;
   }
 
