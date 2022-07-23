@@ -12,3 +12,6 @@
 form {
   display: contents;
 }
+input:invalid {
+  border-color: red;
+}
