@@ -1,1 +1,51 @@
-<p>add-galaxy-form works!</p>
+<app-loading-overlay-wrapper [promise]="addingPromise">
+  <ngx-section class="shadow" sectionTitle="Add galaxy">
+    <form #form (input)="onInput(form)" (submit)="submit(form)">
+      <input
+      type="text"
+      placeholder="name"
+      name="name"
+      id="name"
+      class="form-input input"
+      [(ngModel)]="name"
+      required
+      />
+      <label for="name">Name:</label>
+
+      <input
+      type="number"
+      placeholder="order"
+      name="order"
+      id="order"
+      class="form-input input"
+      [(ngModel)]="order"
+      min="1"
+      required
+      />
+
+      <input
+      type="type"
+      placeholder="type"
+      name="type"
+      id="type"
+      class="form-input input"
+      [(ngModel)]="type"
+      />
+
+      <input
+      type="color"
+      placeholder="color"
+      name="color"
+      id="color"
+      [(ngModel)]="color"
+      />
+
+      <input
+      type="submit"
+      class="btn btn-primary input"
+      value="Add"
+      [disabled]="!valid"
+    />
+    </form>
+  </ngx-section>
+</app-loading-overlay-wrapper>

@@ -9,7 +9,22 @@ export class AddGalaxyFormComponent implements OnInit {
 
   constructor() { }
 
+  addingPromise?: Promise<any>;
+  valid = false;
+
+  name = '';
+  order?: number;
+  type = '';
+  color = '';
+
   ngOnInit(): void {
   }
 
+  onInput(form: HTMLFormElement) {
+    this.valid = form.checkValidity();
+  }
+
+  submit(form: HTMLFormElement) {
+
+  }
 }

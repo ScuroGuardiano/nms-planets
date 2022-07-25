@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GalaxiesComponent } from './galaxies.component';
 import { AddGalaxyFormComponent } from './add-galaxy-form/add-galaxy-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { AddGalaxyFormComponent } from './add-galaxy-form/add-galaxy-form.compon
     AddGalaxyFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class GalaxiesModule { }
