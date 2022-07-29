@@ -1,6 +1,7 @@
 <app-loading-overlay-wrapper [promise]="addingPromise">
   <ngx-section class="shadow" sectionTitle="Add resource">
-    <form #form (input)="onInput(form)" (submit)="submit(form)">
+    <form #form (input)="onInput(form)" (submit)="submit(form)" class="nms-compact-form">
+      <label for="name" class="required">Name:</label>
       <input
       type="text"
       placeholder="name"
@@ -10,8 +11,8 @@
       [(ngModel)]="name"
       required
       />
-      <label for="name">Name:</label>
 
+      <label for="symbol" class="required">Symbol:</label>
       <input
       type="text"
       placeholder="symbol"
@@ -21,8 +22,8 @@
       [(ngModel)]="symbol"
       required
       />
-      <label for="symbol">Symbol:</label>
 
+      <label for="group">Group:</label>
       <input
       type="text"
       placeholder="group"
@@ -31,8 +32,8 @@
       class="form-input input"
       [(ngModel)]="group"
       />
-      <label for="group">Group:</label>
 
+      <label for="group">Group:</label>
       <input
       type="text"
       placeholder="rarity"
@@ -41,8 +42,8 @@
       class="form-input input"
       [(ngModel)]="rarity"
       />
-      <label for="rarity">Rarity:</label>
 
+      <label for="baseValue" class="required">Base value:</label>
       <input
       type="number"
       placeholder="baseValue"
@@ -54,7 +55,6 @@
       min="0"
       required
       />
-      <label for="baseValue">Base value:</label>
 
       <input
         type="submit"

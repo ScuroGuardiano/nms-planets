@@ -1,5 +1,5 @@
 <app-loading-overlay-wrapper [promise]="loadingPromise">
-  <ngx-section sectionTitle="Resources">
+  <ngx-section sectionTitle="Resources" class="datatable">
     <table *ngIf="resources" class="table">
       <thead>
         <tr>
@@ -19,7 +19,7 @@
           <td class="select-row">
             <ngx-checkbox [ngModel]="isSelected(resource.id)" (change)="onSelect(resource.id, $event)"></ngx-checkbox>
           </td>
-          <app-resource-row [resource]="resource" (delete)="onDelete($event)" (update)="update($event)"></app-resource-row>
+          <app-resource-row [data]="resource" (delete)="onDelete($event)" (update)="update($event)"></app-resource-row>
         </tr>
       </tbody>
     </table>

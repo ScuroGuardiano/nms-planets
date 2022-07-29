@@ -1,37 +1,40 @@
 import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { AlertService, NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
 import { IResource } from 'src/app/api-interfaces';
+import AbstractDatatable from 'src/app/helpers/abstract-datatable';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ResourcesService } from 'src/app/services/resources.service';
-
-interface IResourceExtended extends IResource {
-  isEdited?: boolean
-}
 
 @Component({
   selector: 'app-resource-list',
   templateUrl: './resource-list.component.html',
   styleUrls: ['./resource-list.component.scss']
 })
-export class ResourceListComponent implements OnInit {
+export class ResourceListComponent extends AbstractDatatable implements OnInit {
 
   constructor(
     private resourcesService: ResourcesService,
     private errorHandler: ErrorHandlerService,
     private notificationService: NotificationService,
     private alertService: AlertService
-  ) { }
+  ) {
+    super();
+  }
 
   loadingPromise?: Promise<any>;
-  resources?: IResourceExtended[];
-  selected: Set<number> = new Set();
+  resources?: IResource[];
 
   ngOnInit(): void {
     this.loadData();
   }
 
+  public getAllIds(): any[] {
+    return this.resources?.map(r => r.id) ?? [];
+  }
+
   // #region read
   async loadData() {
+    this.selected.clear();
     this.loadingPromise = this.resourcesService.list();
     try {
       this.resources = await this.loadingPromise;
@@ -108,41 +111,6 @@ export class ResourceListComponent implements OnInit {
     catch (err) {
       this.handleError(err);
     }
-  }
-  // #endregion
-
-  // #region select
-  onSelect(id: number, event: Event) {
-    const val = (event.target as HTMLInputElement).checked;
-    val ? this.select(id) : this.unselect(id);
-  }
-
-  select(id: number) {
-    this.selected.add(id);
-  }
-
-  unselect(id: number) {
-    this.selected.delete(id);
-  }
-
-  isSelected(id: number) {
-    return this.selected.has(id);
-  }
-
-  onSelectAll(event: Event) {
-    const val = (event.target as HTMLInputElement).checked;
-    val ? this.selectAll() : this.unselectAll();
-  }
-
-  selectAll() {
-    this.selected = new Set(this.resources!.map(resource => resource.id));
-  }
-  unselectAll() {
-    this.selected.clear();
-  }
-
-  get allSelected() {
-    return this.selected.size == this.resources!.length;
   }
   // #endregion
 

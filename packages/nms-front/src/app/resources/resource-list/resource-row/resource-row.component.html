@@ -1,9 +1,9 @@
 <ng-container *ngIf="!editing; else editTpl">
-  <td>{{ resource.name }}</td>
-  <td>{{ resource.symbol }}</td>
-  <td>{{ resource.group }}</td>
-  <td>{{ resource.rarity }}</td>
-  <td>{{ resource.baseValue }}</td>
+  <td>{{ data.name }}</td>
+  <td>{{ data.symbol }}</td>
+  <td>{{ data.group }}</td>
+  <td>{{ data.rarity }}</td>
+  <td>{{ data.baseValue }}</td>
   <td class="row-actions">
     <div class="row-actions-wrapper">
       <button class="btn btn-warning" (click)="edit()"><i class="ngx-icon ngx-edit-outline"></i></button>
