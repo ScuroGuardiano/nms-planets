@@ -4,6 +4,7 @@ import { AddResourceFormComponent } from './add-resource-form/add-resource-form.
 import { SharedModule } from '../shared/shared.module';
 import { ResourceListComponent } from './resource-list/resource-list.component';
 import { ResourceRowComponent } from './resource-list/resource-row/resource-row.component';
+import { DatatableModule } from '../datatable/datatable.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ResourceRowComponent } from './resource-list/resource-row/resource-row.
     ResourceRowComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    DatatableModule
   ]
 })
 export class ResourcesModule { }

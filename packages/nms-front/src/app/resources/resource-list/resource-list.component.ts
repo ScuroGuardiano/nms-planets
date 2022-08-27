@@ -1,6 +1,7 @@
 import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { AlertService, NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
 import { IResource } from 'src/app/api-interfaces';
+import { ColumnEditUpdateEvent, DatatableColumn } from 'src/app/datatable/interfaces';
 import AbstractDatatable from 'src/app/helpers/abstract-datatable';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ResourcesService } from 'src/app/services/resources.service';
@@ -24,8 +25,20 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
   loadingPromise?: Promise<any>;
   resources?: IResource[];
 
+  columns: DatatableColumn[] = [
+    { key: "name", label: "Name" },
+    { key: "symbol", label: "Symbol" },
+    { key: "group", label: "Group" },
+    { key: "rarity", label: "Rarity" },
+    { key: "baseValue", label: "Base value" }
+  ];
+
   ngOnInit(): void {
     this.loadData();
+  }
+
+  trackBy(index: number, item: IResource) {
+    return item.id;
   }
 
   public getAllIds(): any[] {
@@ -46,7 +59,18 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
   // #endregion
 
   // #region update
-  async update(resource: IResource) {
+  async update(resource: ColumnEditUpdateEvent<IResource>) {
+    try {
+      this.loadingPromise = this.resourcesService.update(resource.prev.id, resource.updated);
+      const updated = await this.loadingPromise;
+      this.resources = this.resources?.map(r => r.id === updated.id ? updated : r);
+    }
+    catch(err) {
+      this.handleError(err);
+    }
+  }
+
+  async updateLegacy(resource: IResource) {
     try {
       this.loadingPromise = this.resourcesService.update(resource.id, resource);
       const updated = await this.loadingPromise;
@@ -56,6 +80,7 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
       this.handleError(err);
     }
   }
+
   // #endregion
 
   // #region delete

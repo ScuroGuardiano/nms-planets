@@ -1,0 +1,71 @@
+<ng-container [formGroup]="form" [ngSwitch]="type">
+  <!-- String -->
+  <input
+    *ngSwitchCase="DatatableColumnType.String"
+    type="text"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    class="inline-edit form-input"
+  >
+
+  <!-- Password -->
+  <input
+    *ngSwitchCase="DatatableColumnType.Password"
+    type="password"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    class="inline-edit form-input"
+  >
+
+  <!-- Number -->
+  <input
+    *ngSwitchCase="DatatableColumnType.Number"
+    type="number"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    [step]="column.step ?? 'any'"
+    class="inline-edit form-input"
+  >
+
+  <!-- Email -->
+  <input
+    *ngSwitchCase="DatatableColumnType.Email"
+    type="email"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    class="inline-edit form-input"
+  >
+
+  <!-- Boolean; TODO: Sprawdzić czy to działa -->
+  <ngx-toggle
+    *ngSwitchCase="DatatableColumnType.Boolean"
+    [formControlName]="column.key"
+    [label]="column.label ?? column.key"
+  >
+  </ngx-toggle>
+
+  <!-- Color -->
+  <input
+    *ngSwitchCase="DatatableColumnType.Color"
+    type="color"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    class="inline-edit form-input"
+  >
+
+  <!-- Date -->
+  <input
+    *ngSwitchCase="DatatableColumnType.Date"
+    type="date"
+    [placeholder]="column.key"
+    [formControlName]="column.key"
+    class="inline-edit form-input"
+  >
+
+  <!-- Select -->
+  <p *ngSwitchCase="DatatableColumnType.Select">NOT IMPLEMENTED YET.</p>
+
+  <p *ngSwitchDefault>
+    Column Datatype {{ type }} is not supported.
+  </p>
+</ng-container>

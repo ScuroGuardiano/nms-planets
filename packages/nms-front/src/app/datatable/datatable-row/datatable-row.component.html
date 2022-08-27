@@ -1,0 +1,46 @@
+<tr *ngIf="record">
+  <ng-container *ngIf="!editing; else editTpl">
+    <td *ngIf="selectable" class="select-row">
+      <ngx-checkbox [ngModel]="isSelected" (change)="onSelect($event)"></ngx-checkbox>
+    </td>
+    <td *ngFor="let column of columns">{{ record[column.key] }}</td>
+    <td *ngIf="actionsColumnVisible" class="row-actions">
+      <div class="row-actions-wrapper">
+        <button *ngIf="editable" class="btn btn-warning" (click)="edit()"><i class="ngx-icon ngx-edit-outline"></i></button>
+        <button *ngIf="deletable" class="btn btn-danger" (click)="onDelete()"><i class="ngx-icon ngx-trash"></i></button>
+      </div>
+    </td>
+  </ng-container>
+</tr>
+
+
+<ng-template #editTpl>
+  <td *ngIf="selectable" class="select-row">
+    <ngx-checkbox [ngModel]="isSelected" (change)="onSelect($event)"></ngx-checkbox>
+  </td>
+
+  <!--
+    I must wrap this form in div with style="display: contents"
+    Because even though form has set display contents [in css]
+    it's not allowed in <tr> and it's display is set to none;
+    Wrapping it in div solves this problem.
+    Yea, I must use bleedin' edge new css features.
+  -->
+  <div style="display: contents">
+    <form [formGroup]="form" (ngSubmit)="onEditSubmit()">
+      <td *ngFor="let column of columns">
+        <app-edit-form-cell
+          [column]="column"
+          [form]="form"
+          [value]="record[column.key]"
+        ></app-edit-form-cell>
+      </td>
+      <td class="row-actions">
+        <div class="row-actions-wrapper">
+          <button type="submit" class="btn btn-warning" [disabled]="!valid"><i class="ngx-icon ngx-check"></i></button>
+          <button class="btn btn-danger" (click)="onDiscard()"><i class="ngx-icon ngx-x-small"></i></button>
+        </div>
+      </td>
+   </form>
+  </div>
+</ng-template>

@@ -1,0 +1,27 @@
+<table class="table datatable">
+  <thead>
+    <tr>
+      <th class="select-row-header">
+        <ngx-checkbox [ngModel]="allSelected" (change)="onSelectAll($event)"></ngx-checkbox>
+      </th>
+      <th *ngFor="let column of columnHeaders">
+        {{ column }}
+      </th>
+      <th class="row-actions-header" *ngIf="actionsColumnVisible">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-datatable-row
+      *ngFor="let record of dataWithMetadata; trackBy: $any(trackBy)"
+      [record]="record.recordData"
+      [columns]="internalColumns"
+      [deletable]="deletable"
+      [editable]="editable"
+      [selectable]="selectable"
+      [isSelected]="record.selected"
+      (select)="onRowSelect(record, $event)"
+      (delete)="delete.emit($event)"
+      (update)="update.emit($event)">
+    </app-datatable-row>
+  </tbody>
+</table>

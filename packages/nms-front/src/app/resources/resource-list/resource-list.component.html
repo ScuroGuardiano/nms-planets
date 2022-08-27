@@ -1,4 +1,4 @@
-<app-loading-overlay-wrapper [promise]="loadingPromise">
+<!-- <app-loading-overlay-wrapper [promise]="loadingPromise">
   <ngx-section sectionTitle="Resources" class="datatable">
     <table *ngIf="resources" class="table">
       <thead>
@@ -19,7 +19,7 @@
           <td class="select-row">
             <ngx-checkbox [ngModel]="isSelected(resource.id)" (change)="onSelect(resource.id, $event)"></ngx-checkbox>
           </td>
-          <app-resource-row [data]="resource" (delete)="onDelete($event)" (update)="update($event)"></app-resource-row>
+          <app-resource-row [data]="resource" (delete)="onDelete($event)" (update)="updateLegacy($event)"></app-resource-row>
         </tr>
       </tbody>
     </table>
@@ -30,5 +30,19 @@
         (click)="onDeleteSelected()"
       ><i class="ngx-icon ngx-trash"></i>Delete selected</button>
     </div>
+  </ngx-section>
+</app-loading-overlay-wrapper> -->
+<app-loading-overlay-wrapper [promise]="loadingPromise">
+  <ngx-section sectionTitle="Resources" class="datatable">
+    <app-datatable
+      [data]="resources"
+      [columns]="columns"
+      [trackBy]="trackBy"
+      editable
+      deletable
+      selectable
+      (delete)="onDelete($event)"
+      (update)="update($event)">
+    </app-datatable>
   </ngx-section>
 </app-loading-overlay-wrapper>

@@ -12,6 +12,7 @@ import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ResourcesModule } from './resources/resources.module';
 import { GalaxiesModule } from './galaxies/galaxies.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { GalaxiesModule } from './galaxies/galaxies.module';
   imports: [
     BrowserModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     NgxUIModule,
