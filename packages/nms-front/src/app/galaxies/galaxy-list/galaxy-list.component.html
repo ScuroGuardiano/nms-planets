@@ -1,1 +1,15 @@
-<p>galaxy-list works!</p>
+<app-loading-overlay-wrapper>
+  <ngx-section sectionTitle="Galaxies">
+    <app-datatable
+      [data]="galaxies"
+      [columns]="columns"
+      [trackBy]="trackBy"
+      editable
+      deletable
+      selectable
+      (delete)="onDelete($event)"
+      (update)="update($event)"
+    >
+    </app-datatable>
+  </ngx-section>
+</app-loading-overlay-wrapper>

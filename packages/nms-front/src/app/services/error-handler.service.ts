@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,6 @@ export class ErrorHandlerService {
   }
 
   private displayNotification(message: string) {
-    this.notificationService.create({
-      title: "Error!",
-      body: message,
-      styleType: NotificationStyleType.error,
-      timeout: 8000
-    });
+    this.notificationService.error(message);
   }
 }

@@ -1,9 +1,9 @@
-import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
-import { AlertService, NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
+import { Component, OnInit } from '@angular/core';
+import { AlertService } from '@swimlane/ngx-ui';
 import { IResource } from 'src/app/api-interfaces';
 import { ColumnEditUpdateEvent, DatatableColumn } from 'src/app/datatable/interfaces';
-import AbstractDatatable from 'src/app/helpers/abstract-datatable';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { ResourcesService } from 'src/app/services/resources.service';
 
 @Component({
@@ -11,16 +11,14 @@ import { ResourcesService } from 'src/app/services/resources.service';
   templateUrl: './resource-list.component.html',
   styleUrls: ['./resource-list.component.scss']
 })
-export class ResourceListComponent extends AbstractDatatable implements OnInit {
+export class ResourceListComponent implements OnInit {
 
   constructor(
     private resourcesService: ResourcesService,
     private errorHandler: ErrorHandlerService,
     private notificationService: NotificationService,
     private alertService: AlertService
-  ) {
-    super();
-  }
+  ) {}
 
   loadingPromise?: Promise<any>;
   resources?: IResource[];
@@ -41,13 +39,9 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
     return item.id;
   }
 
-  public getAllIds(): any[] {
-    return this.resources?.map(r => r.id) ?? [];
-  }
-
   // #region read
   async loadData() {
-    this.selected.clear();
+    // this.selected.clear();
     this.loadingPromise = this.resourcesService.list();
     try {
       this.resources = await this.loadingPromise;
@@ -63,6 +57,7 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
     try {
       this.loadingPromise = this.resourcesService.update(resource.prev.id, resource.updated);
       const updated = await this.loadingPromise;
+      this.notificationService.success(`Resource ${resource.updated.name} (${resource.updated.symbol}) has been updated!`);
       this.resources = this.resources?.map(r => r.id === updated.id ? updated : r);
     }
     catch(err) {
@@ -100,43 +95,38 @@ export class ResourceListComponent extends AbstractDatatable implements OnInit {
 
     try {
       await this.loadingPromise;
-      this.notificationService.create({
-        title: `Deleted ${resource.name} (${resource.symbol})`,
-        body: `Deleted ${resource.name} (${resource.symbol})`,
-        styleType: NotificationStyleType.success,
-        timeout: 8000
-      });
+      this.notificationService.success(`Deleted ${resource.name} (${resource.symbol})`);
       this.loadData();
     } catch(err) {
       this.handleError(err);
     }
   }
 
-  async onDeleteSelected() {
-    const confirmation = await this.alertService.confirm({
-      title: `Deleting ${this.selected.size} records...`,
-      content: `Do you really want to ${this.selected.size} resources?`
-    }).toPromise();
+  // async onDeleteSelected() {
+  //   const confirmation = await this.alertService.confirm({
+  //     title: `Deleting ${this.selected.size} records...`,
+  //     content: `Do you really want to ${this.selected.size} resources?`
+  //   }).toPromise();
 
-    if (confirmation.type === "ok") {
-      this.deleteSelected();
-    }
-  }
+  //   if (confirmation.type === "ok") {
+  //     this.deleteSelected();
+  //   }
+  // }
 
-  private async deleteSelected() {
-    // TODO: Add to backend possibility of deleting multiple records... for now...
-    // TODO: This is very bad
-    this.loadingPromise = Promise.all(Array.from(this.selected)
-      .map(id => this.resourcesService.delete(id)));
+  // private async deleteSelected() {
+  //   // TODO: Add to backend possibility of deleting multiple records... for now...
+  //   // TODO: This is very bad
+  //   this.loadingPromise = Promise.all(Array.from(this.selected)
+  //     .map(id => this.resourcesService.delete(id)));
 
-    try {
-      await this.loadingPromise;
-      this.loadData();
-    }
-    catch (err) {
-      this.handleError(err);
-    }
-  }
+  //   try {
+  //     await this.loadingPromise;
+  //     this.loadData();
+  //   }
+  //   catch (err) {
+  //     this.handleError(err);
+  //   }
+  // }
   // #endregion
 
   // #region helpers

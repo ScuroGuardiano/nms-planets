@@ -4,18 +4,18 @@ import { GalaxiesComponent } from './galaxies.component';
 import { AddGalaxyFormComponent } from './add-galaxy-form/add-galaxy-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { GalaxyListComponent } from './galaxy-list/galaxy-list.component';
-import { GalaxyRowComponent } from './galaxy-list/galaxy-row/galaxy-row.component';
+import { DatatableModule } from '../datatable/datatable.module';
 
 @NgModule({
   declarations: [
     GalaxiesComponent,
     AddGalaxyFormComponent,
-    GalaxyListComponent,
-    GalaxyRowComponent
+    GalaxyListComponent
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    DatatableModule
   ]
 })
 export class GalaxiesModule { }
